@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="calculations.js" defer></script>
+  <script src="main.js" defer></script>
+
+  <title>CFB 26 Pitch Finder</title>
+</head>
+
+<body>
+  <header class="page-header">
+    <h1>CFB 26 Pitch Finder</h1>
+    <p>Select what you know about the recruit’s motivations.</p>
+  </header>
+
+  <main class="app-layout">
+    <section class="card">
+      <div class="section-header">
+        <h2>Recruit Motivations</h2>
+        <button id="reset-btn" class="secondary-btn">Reset</button>
+      </div>
+
+      <div id="motivation-list" class="motivation-list"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <h2>Possible Pitches</h2>
+        <div id="result-count" class="result-count"></div>
+      </div>
+
+      <div id="pitch-results" class="pitch-results"></div>
+    </section>
+  </main>
+</body>
+</html>
