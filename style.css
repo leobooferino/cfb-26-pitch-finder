@@ -2,11 +2,52 @@
   box-sizing: border-box;
 }
 
+:root {
+  --page-bg: #f9fafb;
+  --card-bg: #f5f5f5;
+  --card-border: #cfcfcf;
+  --row-bg: #ffffff;
+  --row-border: #cfcfcf;
+  --text-main: #111827;
+  --text-soft: #5f6b7a;
+  --text-faint: #7b8794;
+
+  --btn-bg: #f9f9f9;
+  --btn-border: #818181;
+  --btn-hover: #ececec;
+
+  --yes-bg: #065f46;
+  --yes-border: #10b981;
+  --yes-text: #ffffff;
+
+  --no-bg: #7f1d1d;
+  --no-border: #ef4444;
+  --no-text: #ffffff;
+
+  --reset-bg: #a3a3a3;
+  --reset-border: #a7a7a7;
+  --reset-hover: #8d8d8d;
+
+  --pill-bg: #eef2f7;
+  --pill-border: #cfd8e3;
+  --pill-text: #334155;
+
+  --pill-confirmed-bg: #e7f8f1;
+  --pill-confirmed-border: #8ce0bd;
+  --pill-confirmed-text: #065f46;
+
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #111827;
-  background: #f9fafb;
+  color: var(--text-main);
+  background: var(--page-bg);
+  line-height: 1.45;
 }
 
 .page-header {
@@ -17,11 +58,13 @@ body {
 .page-header h1 {
   margin: 0 0 8px;
   font-size: 2rem;
+  letter-spacing: -0.02em;
 }
 
 .page-header p {
   margin: 0;
-  color: #9ca3af;
+  color: var(--text-soft);
+  font-size: 0.98rem;
 }
 
 .app-layout {
@@ -34,11 +77,11 @@ body {
 }
 
 .card {
-    background: #f5f5f5;
-    border: 1px solid #c5c5c5;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow);
 }
 
 .section-header {
@@ -55,8 +98,9 @@ body {
 }
 
 .result-count {
-  color: #9ca3af;
+  color: var(--text-soft);
   font-size: 0.95rem;
+  white-space: nowrap;
 }
 
 .motivation-list {
@@ -66,57 +110,72 @@ body {
 }
 
 .motivation-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 12px;
-    padding: 10px;
-    border-radius: 12px;
-    background: #f7f7f7;
-    border: 1px solid #b7b7b7;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--row-bg);
+  border: 1px solid var(--row-border);
 }
 
 .motivation-name {
-  font-size: 0.95rem;
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: var(--text-main);
 }
 
 .state-buttons {
   display: flex;
-  gap: 6px;
+  gap: 8px;
+  align-items: stretch;
 }
 
 .state-btn,
 .secondary-btn {
-    border: 1px solid #818181;
-    background: #f9f9f9;
-    color: #202020;
-    border-radius: 4px;
-    padding: 7px 12px;
-    cursor: pointer;
-    font-size: 0.8rem;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: #202020;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
 }
 
 .state-btn:hover,
 .secondary-btn:hover {
-    background: #ececec;
+  background: var(--btn-hover);
+}
+
+.state-btn:focus-visible,
+.secondary-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.state-btn:active,
+.secondary-btn:active {
+  transform: translateY(1px);
 }
 
 .state-btn.active.yes {
-    background: #065f46;
-    border-color: #10b981;
-    color: #ffffff;
+  background: var(--yes-bg);
+  border-color: var(--yes-border);
+  color: var(--yes-text);
 }
 
 .state-btn.active.no {
-    background: #7f1d1d;
-    border-color: #ef4444;
-    color: #ffffff;
-}
-
-.state-btn.active.unknown {
-    background: #374151;
-    border-color: #9ca3af;
-    color: #ffffff;
+  background: var(--no-bg);
+  border-color: var(--no-border);
+  color: var(--no-text);
 }
 
 .pitch-results {
@@ -125,31 +184,34 @@ body {
 }
 
 .pitch-card {
-    border-radius: 14px;
-    background: #f3f3f3;
-    border: 1px solid #b7b7b7;
-    padding: 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #d4d4d4;
+  padding: 14px;
 }
 
 .pitch-card.best-match {
   border-color: #10b981;
+  box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.12);
 }
 
 .pitch-title-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   margin-bottom: 10px;
 }
 
 .pitch-name {
   font-weight: 700;
+  color: var(--text-main);
 }
 
 .pitch-score {
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: var(--text-soft);
+  white-space: nowrap;
 }
 
 .pitch-motivations {
@@ -160,35 +222,37 @@ body {
 
 .motivation-pill {
   border-radius: 999px;
-  padding: 5px 9px;
-  background: #1f2937;
-  color: #d1d5db;
-  border: 1px solid #374151;
+  padding: 5px 10px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  border: 1px solid var(--pill-border);
   font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .motivation-pill.confirmed {
-  background: #065f46;
-  border-color: #10b981;
-  color: #ecfdf5;
+  background: var(--pill-confirmed-bg);
+  border-color: var(--pill-confirmed-border);
+  color: var(--pill-confirmed-text);
 }
 
 .empty-state {
-  color: #9ca3af;
+  color: var(--text-soft);
   padding: 16px;
-  border: 1px dashed #4b5563;
+  border: 1px dashed #b2bcc8;
   border-radius: 12px;
+  background: #ffffff;
 }
 
 button#reset-btn {
-    background: #a3a3a3;
-    border: 1px solid #a7a7a7;
-    color: #ffffff;
-    padding: 0.4rem 2rem;
+  background: var(--reset-bg);
+  border: 1px solid var(--reset-border);
+  color: #ffffff;
+  padding: 0.45rem 1.3rem;
 }
 
 button#reset-btn:hover {
-    background: #8d8d8d;
+  background: var(--reset-hover);
 }
 
 @media (max-width: 850px) {
@@ -198,5 +262,41 @@ button#reset-btn:hover {
 
   .motivation-row {
     grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .state-buttons {
+    width: 100%;
+  }
+
+  .state-btn {
+    flex: 1 1 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-header {
+    padding: 24px 16px 12px;
+  }
+
+  .app-layout {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .section-header {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .pitch-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 }
