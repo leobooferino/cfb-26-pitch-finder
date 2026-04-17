@@ -26,18 +26,21 @@ function renderMotivations() {
     const buttons = document.createElement("div");
     buttons.className = "state-buttons";
 
-    ["yes", "no", "unknown"].forEach((state) => {
+    ["yes", "no"].forEach((state) => {
       const button = document.createElement("button");
       button.className = `state-btn ${state}`;
+      button.textContent = formatStateLabel(state);
 
       if (motivationStates[motivation] === state) {
         button.classList.add("active");
       }
 
-      button.textContent = formatStateLabel(state);
+      button.setAttribute("aria-pressed", motivationStates[motivation] === state ? "true" : "false");
 
       button.addEventListener("click", () => {
-        motivationStates[motivation] = state;
+        motivationStates[motivation] =
+          motivationStates[motivation] === state ? "unknown" : state;
+
         renderApp();
       });
 
@@ -83,7 +86,7 @@ function renderPitches() {
 
     const score = document.createElement("div");
     score.className = "pitch-score";
-    score.textContent = `${pitch.confirmedMatchCount}/3 known`;
+    score.textContent = getPitchScoreLabel(pitch.confirmedMatchCount);
 
     titleRow.appendChild(title);
     titleRow.appendChild(score);
@@ -113,7 +116,13 @@ function renderPitches() {
 function formatStateLabel(state) {
   if (state === "yes") return "Yes";
   if (state === "no") return "No";
-  return "?";
+  return "";
+}
+
+function getPitchScoreLabel(count) {
+  if (count === 0) return "Still possible";
+  if (count === 1) return "1 known match";
+  return `${count} known matches`;
 }
 
 function renderApp() {
