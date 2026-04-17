@@ -22,7 +22,7 @@ const PITCHES = [
   },
   {
     name: "Team Player",
-    motivations: ["Coach Prestige", "Proximity to Home", "Playing Style"]
+    motivations: ["Coach Stability", "Proximity to Home", "Playing Style"]
   },
   {
     name: "Campus Personality",
