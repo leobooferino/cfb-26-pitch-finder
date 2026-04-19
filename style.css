@@ -283,6 +283,13 @@ button#reset-btn:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    padding: 8px 0 10px;
+    background: rgba(249, 250, 251, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #d7d7d7;
   }
 
   .mobile-tab {
@@ -295,17 +302,29 @@ button#reset-btn:hover {
   }
 
   .motivation-row {
-    grid-template-columns: 1fr;
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) 132px;
+    align-items: center;
+    gap: 10px;
+    min-height: 58px;
+  }
+
+  .motivation-name {
+    min-width: 0;
+    line-height: 1.2;
   }
 
   .state-buttons {
-    width: 100%;
+    width: 132px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    align-items: stretch;
   }
 
   .state-btn {
-    flex: 1 1 0;
     width: 100%;
+    min-width: 0;
+    padding: 9px 0;
   }
 
   .mobile-view-results #motivations-card {
@@ -340,26 +359,26 @@ button#reset-btn:hover {
   }
 
   .mobile-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  padding: 8px 0 10px;
-  background: rgba(249, 250, 251, 0.96);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #d7d7d7;
-}
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    padding: 8px 0 10px;
+    background: rgba(249, 250, 251, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #d7d7d7;
+  }
 }
 
 @media (max-width: 560px) {
   .page-header {
-    padding: 24px 16px 12px;
+    padding: 24px 8px 12px;
   }
 
   .app-layout {
-    padding: 16px 16px 88px;
+    padding: 16px 8px 0px;
     gap: 16px;
   }
 
@@ -379,16 +398,24 @@ button#reset-btn:hover {
   }
 
   .motivation-row {
+    grid-template-columns: minmax(0, 1fr) 120px;
     padding: 10px;
-    gap: 10px;
+    gap: 8px;
+    min-height: 54px;
   }
 
   .motivation-name {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+  }
+
+  .state-buttons {
+    width: 120px;
+    gap: 6px;
   }
 
   .state-btn {
-    padding: 10px 12px;
+    padding: 8px 0;
+    font-size: 0.8rem;
   }
 
   .motivation-list {
