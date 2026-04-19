@@ -338,6 +338,19 @@ button#reset-btn:hover {
   .mobile-reset-btn:hover {
     background: var(--reset-hover);
   }
+
+  .mobile-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: 8px 0 10px;
+  background: rgba(249, 250, 251, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #d7d7d7;
+}
 }
 
 @media (max-width: 560px) {
