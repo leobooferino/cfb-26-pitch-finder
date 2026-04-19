@@ -19,16 +19,34 @@
   </header>
 
   <main class="app-layout">
-    <section class="card">
+    <div class="mobile-tabs">
+      <button
+        id="tab-motivations-btn"
+        class="mobile-tab active"
+        type="button"
+      >
+        Motivations
+      </button>
+
+      <button
+        id="tab-results-btn"
+        class="mobile-tab"
+        type="button"
+      >
+        Results
+      </button>
+    </div>
+
+    <section id="motivations-card" class="card">
       <div class="section-header">
         <h2>Recruit Motivations</h2>
-        <button id="reset-btn" class="secondary-btn">Reset</button>
+        <button id="reset-btn" class="secondary-btn" type="button">Reset</button>
       </div>
 
       <div id="motivation-list" class="motivation-list"></div>
     </section>
 
-    <section class="card">
+    <section id="results-card" class="card">
       <div class="section-header">
         <h2>Possible Pitches</h2>
         <div id="result-count" class="result-count"></div>
@@ -37,5 +55,11 @@
       <div id="pitch-results" class="pitch-results"></div>
     </section>
   </main>
+
+  <div class="mobile-sticky-bar">
+    <button id="mobile-reset-btn" class="mobile-reset-btn" type="button">
+      Reset
+    </button>
+  </div>
 </body>
 </html>
