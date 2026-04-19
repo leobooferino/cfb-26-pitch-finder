@@ -36,6 +36,9 @@
   --pill-confirmed-border: #8ce0bd;
   --pill-confirmed-text: #065f46;
 
+  --mobile-tab-active-bg: #e9f2ff;
+  --mobile-tab-active-border: #8db8ff;
+
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   --radius-lg: 16px;
   --radius-md: 12px;
@@ -133,7 +136,9 @@ body {
 }
 
 .state-btn,
-.secondary-btn {
+.secondary-btn,
+.mobile-tab,
+.mobile-reset-btn {
   border: 1px solid var(--btn-border);
   background: var(--btn-bg);
   color: #202020;
@@ -151,18 +156,24 @@ body {
 }
 
 .state-btn:hover,
-.secondary-btn:hover {
+.secondary-btn:hover,
+.mobile-tab:hover,
+.mobile-reset-btn:hover {
   background: var(--btn-hover);
 }
 
 .state-btn:focus-visible,
-.secondary-btn:focus-visible {
+.secondary-btn:focus-visible,
+.mobile-tab:focus-visible,
+.mobile-reset-btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 
 .state-btn:active,
-.secondary-btn:active {
+.secondary-btn:active,
+.mobile-tab:active,
+.mobile-reset-btn:active {
   transform: translateY(1px);
 }
 
@@ -255,9 +266,32 @@ button#reset-btn:hover {
   background: var(--reset-hover);
 }
 
+.mobile-tabs {
+  display: none;
+}
+
+.mobile-sticky-bar {
+  display: none;
+}
+
 @media (max-width: 850px) {
   .app-layout {
     grid-template-columns: 1fr;
+  }
+
+  .mobile-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mobile-tab {
+    background: #ffffff;
+  }
+
+  .mobile-tab.active {
+    background: var(--mobile-tab-active-bg);
+    border-color: var(--mobile-tab-active-border);
   }
 
   .motivation-row {
@@ -273,6 +307,37 @@ button#reset-btn:hover {
     flex: 1 1 0;
     width: 100%;
   }
+
+  .mobile-view-results #motivations-card {
+    display: none;
+  }
+
+  .mobile-view-motivations #results-card {
+    display: none;
+  }
+
+  .mobile-sticky-bar {
+    display: block;
+    position: sticky;
+    bottom: 0;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(249, 250, 251, 0.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #d7d7d7;
+  }
+
+  .mobile-reset-btn {
+    width: 100%;
+    background: var(--reset-bg);
+    border-color: var(--reset-border);
+    color: #ffffff;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+
+  .mobile-reset-btn:hover {
+    background: var(--reset-hover);
+  }
 }
 
 @media (max-width: 560px) {
@@ -281,7 +346,7 @@ button#reset-btn:hover {
   }
 
   .app-layout {
-    padding: 16px;
+    padding: 16px 16px 88px;
     gap: 16px;
   }
 
@@ -298,5 +363,22 @@ button#reset-btn:hover {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+
+  .motivation-row {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .motivation-name {
+    font-size: 0.92rem;
+  }
+
+  .state-btn {
+    padding: 10px 12px;
+  }
+
+  .motivation-list {
+    gap: 8px;
   }
 }
