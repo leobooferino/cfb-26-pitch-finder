@@ -2,6 +2,11 @@ const motivationListEl = document.getElementById("motivation-list");
 const pitchResultsEl = document.getElementById("pitch-results");
 const resultCountEl = document.getElementById("result-count");
 const resetBtn = document.getElementById("reset-btn");
+const mobileResetBtn = document.getElementById("mobile-reset-btn");
+
+const appLayoutEl = document.querySelector(".app-layout");
+const tabMotivationsBtn = document.getElementById("tab-motivations-btn");
+const tabResultsBtn = document.getElementById("tab-results-btn");
 
 let motivationStates = {};
 
@@ -10,6 +15,23 @@ function initializeMotivationStates() {
     acc[motivation] = "unknown";
     return acc;
   }, {});
+}
+
+function setMobileView(view) {
+  if (!appLayoutEl) return;
+
+  appLayoutEl.classList.remove("mobile-view-motivations", "mobile-view-results");
+  appLayoutEl.classList.add(`mobile-view-${view}`);
+
+  if (tabMotivationsBtn) {
+    tabMotivationsBtn.classList.toggle("active", view === "motivations");
+    tabMotivationsBtn.setAttribute("aria-pressed", view === "motivations" ? "true" : "false");
+  }
+
+  if (tabResultsBtn) {
+    tabResultsBtn.classList.toggle("active", view === "results");
+    tabResultsBtn.setAttribute("aria-pressed", view === "results" ? "true" : "false");
+  }
 }
 
 function renderMotivations() {
@@ -35,7 +57,10 @@ function renderMotivations() {
         button.classList.add("active");
       }
 
-      button.setAttribute("aria-pressed", motivationStates[motivation] === state ? "true" : "false");
+      button.setAttribute(
+        "aria-pressed",
+        motivationStates[motivation] === state ? "true" : "false"
+      );
 
       button.addEventListener("click", () => {
         motivationStates[motivation] =
@@ -130,10 +155,32 @@ function renderApp() {
   renderPitches();
 }
 
-resetBtn.addEventListener("click", () => {
+function handleReset() {
   initializeMotivationStates();
   renderApp();
-});
+  setMobileView("motivations");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+resetBtn.addEventListener("click", handleReset);
+
+if (mobileResetBtn) {
+  mobileResetBtn.addEventListener("click", handleReset);
+}
+
+if (tabMotivationsBtn) {
+  tabMotivationsBtn.addEventListener("click", () => {
+    setMobileView("motivations");
+  });
+}
+
+if (tabResultsBtn) {
+  tabResultsBtn.addEventListener("click", () => {
+    setMobileView("results");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
 
 initializeMotivationStates();
 renderApp();
+setMobileView("motivations");
